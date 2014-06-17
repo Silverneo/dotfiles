@@ -1,5 +1,5 @@
-colorscheme desert
 set background=dark
+filetype plugin indent on
 set nocompatible
 set backspace=indent,eol,start
 set lbr nu et ts=4 sw=4 ai si sc bs=2 wb nobk vb so=1 ru ls=2 ww=b,s,h,l,<,>,[,]
@@ -7,8 +7,8 @@ set com=sr:/*,mb:*,el:*/,://,b:#,:%,:XCOMM,n:>,fb:-,n:\:
 set nojs vi=""
 set mps+=<:>
 set clipboard=autoselect,exclude:.*
-ia teh the
-ia hte the
+"ia teh the
+"ia hte the
 syn on
 
 set showtabline=0 " Close tab bar, bufferline there
@@ -29,9 +29,39 @@ Plugin 'scrooloose/nerdtree'
 Plugin 'Lokaltog/vim-easymotion'
 
 Plugin 'flazz/vim-colorschemes'
+
+Plugin 'Shougo/neocomplete.vim'
 call vundle#end()
-filetype plugin indent on
+filetype on
+
+colorscheme Tomorrow-Night-Bright
 
 let g:bufferline_echo = 0
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#tabline#enbled = 1
+
+"neocomplete settings
+let g:neocomplete#enable_at_startup = 1
+let g:neocomplete#enable_smart_case = 0
+let g:neocomplete#enable_auto_close_preview = 0
+let g:neocomplete#max_list = 20
+
+inoremap <expr><C-g> neocomplete#undo_completion()
+inoremap <expr><C-l> neocomplete#complete_common_string()
+
+"<CR>: close popup and save indent.
+inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+function! s:my_cr_function()
+    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
+endfunction
+
+" <TAB>: completion
+inoremap <expr><TAB> pumvisible() ? "\<C-n>": "\<TAB>"
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>": "\<TAB>"
+" <C-h>, <BS>: close popup and delete backward char
+inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
+inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
+
+autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+
+set colorcolumn=80 "line length highlight
