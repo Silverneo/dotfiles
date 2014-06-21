@@ -198,3 +198,5 @@
 # alias cd=cd_func
 
 export PS1='\[\e[33m\][\[\e[32m\]\t-\[\e[36m\]\u \[\e[35m\]@\[\e[36m\] \w\[\e[33m\]]\[\e[32m\]-> \[\e[0m\]'
+# set for jekyll
+export COMSPEC=/cygdrive/c/Windows/system32/cmd.exe
