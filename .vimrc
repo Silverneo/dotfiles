@@ -31,6 +31,8 @@ Plugin 'Lokaltog/vim-easymotion'
 Plugin 'flazz/vim-colorschemes'
 
 Plugin 'Shougo/neocomplete.vim'
+
+Plugin 'scrooloose/nerdcommenter'
 call vundle#end()
 filetype on
 
@@ -65,3 +67,9 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 set colorcolumn=80 "line length highlight
+
+" NERDTree settings
+map <F3> :NERDTreeToggle<CR>
+
+" Markdown settings
+au BufRead,BufNewFile *.md set filetype=markdown
