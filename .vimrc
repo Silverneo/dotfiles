@@ -1,5 +1,6 @@
 set background=dark
 filetype plugin indent on
+set hidden
 set nocompatible
 set backspace=indent,eol,start
 set lbr nu et ts=4 sw=4 ai si sc bs=2 wb nobk vb so=1 ru ls=2 ww=b,s,h,l,<,>,[,]
@@ -73,3 +74,13 @@ map <F3> :NERDTreeToggle<CR>
 
 " Markdown settings
 au BufRead,BufNewFile *.md set filetype=markdown
+
+" Go to last file(s) if invoked without arguments.
+" From Vim Wiki Tip 613
+au VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
+    \ call mkdir($HOME . "/.vim") |
+    \ endif |
+    \ execute "mksession! " . $HOME . "/.vim/Session.vim"
+
+au VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
+    \ execute "source " . $HOME . "/.vim/Session.vim"
