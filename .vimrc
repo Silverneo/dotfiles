@@ -14,6 +14,8 @@ syn on
 
 set showtabline=0 " Close tab bar, bufferline there
 set wildmenu " Enable completion options in status bar
+set colorcolumn=80 "line length highlight
+set cursorline
 
 filetype off " required for Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -67,8 +69,6 @@ inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
 
 autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
-set colorcolumn=80 "line length highlight
-
 " NERDTree settings
 map <F3> :NERDTreeToggle<CR>
 
@@ -84,3 +84,6 @@ au VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
 
 au VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
     \ execute "source " . $HOME . "/.vim/Session.vim"
+
+" EasyMotion
+nmap <Space> <Plug>(easymotion-s)
