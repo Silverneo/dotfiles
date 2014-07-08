@@ -3,7 +3,7 @@ filetype plugin indent on
 set hidden
 set nocompatible
 set backspace=indent,eol,start
-set lbr nu et ts=4 sw=4 ai si sc bs=2 wb nobk vb so=1 ru ls=2 ww=b,s,h,l,<,>,[,]
+set lbr nu et ts=4 sw=4 ai si bs=2 wb nobk vb so=1 ru ls=2 ww=b,s,h,l,<,>,[,]
 set com=sr:/*,mb:*,el:*/,://,b:#,:%,:XCOMM,n:>,fb:-,n:\:
 set nojs vi=""
 set mps+=<:>
@@ -15,6 +15,7 @@ syn on
 set showtabline=0 " Close tab bar, bufferline there
 set wildmenu " Enable completion options in status bar
 set colorcolumn=80 "line length highlight
+set scrolloff=8
 set cursorline
 
 filetype off " required for Vundle
