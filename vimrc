@@ -1,22 +1,40 @@
-set background=dark
-filetype plugin indent on
-set hidden
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+"                                 My .vimc file
+"                              Copyright@silverneo
+"                          Feel free to copy and modify!
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set nocompatible
+filetype plugin indent on
+set background=dark
 set backspace=indent,eol,start
-set lbr nu et ts=4 sw=4 ai si bs=2 wb nobk vb so=1 ru ls=2 ww=b,s,h,l,<,>,[,]
-set com=sr:/*,mb:*,el:*/,://,b:#,:%,:XCOMM,n:>,fb:-,n:\:
+syntax on
+
+set hidden
+set number
+set ruler
+set showtabline=0                   " Close tab bar, bufferline there
+set laststatus=2
+set colorcolumn=80                  "line length highlight
+set cursorline
+set scrolloff=8
+set linebreak
+set wildmenu                        " Enable completion options in status bar
+set autoindent smartindent
+set expandtab ts=4
+set shiftwidth=4
+set nobackup nowritebackup noswapfile
+set vb t_vb=
+set whichwrap+=h,l,<,>,[,]          " See Vim Tip 137
 set nojs vi=""
 set mps+=<:>
 set clipboard=autoselect,exclude:.*
+set com=sr:/*,mb:*,el:*/,://,b:#,:%,:XCOMM,n:>,fb:-,n:\:
+
 "ia teh the
 "ia hte the
-syn on
 
-set showtabline=0 " Close tab bar, bufferline there
-set wildmenu " Enable completion options in status bar
-set colorcolumn=80 "line length highlight
-set scrolloff=8
-set cursorline
+" Markdown settings
+au BufRead,BufNewFile *.md set filetype=markdown
 
 filetype off " required for Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -37,10 +55,13 @@ Plugin 'flazz/vim-colorschemes'
 Plugin 'Shougo/neocomplete.vim'
 
 Plugin 'scrooloose/nerdcommenter'
+
+Plugin 'tpope/vim-fugitive'
 call vundle#end()
 filetype on
 
 colorscheme Tomorrow-Night-Bright
+"colorscheme hemisu
 
 let g:bufferline_echo = 0
 let g:airline#extensions#bufferline#enabled = 1
@@ -73,8 +94,6 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " NERDTree settings
 map <F3> :NERDTreeToggle<CR>
 
-" Markdown settings
-au BufRead,BufNewFile *.md set filetype=markdown
 
 " Go to last file(s) if invoked without arguments.
 " From Vim Wiki Tip 613
