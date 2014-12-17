@@ -36,6 +36,8 @@ set com=sr:/*,mb:*,el:*/,://,b:#,:%,:XCOMM,n:>,fb:-,n:\:
 " Markdown settings
 au BufRead,BufNewFile *.md set filetype=markdown
 
+au BufRead,BufNewFile *.ml,*.mli compiler ocaml
+
 filetype off " required for Vundle
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -94,16 +96,15 @@ autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 " NERDTree settings
 map <F3> :NERDTreeToggle<CR>
 
+" EasyMotion
+nmap <Space> <Plug>(easymotion-s)
 
 " Go to last file(s) if invoked without arguments.
 " From Vim Wiki Tip 613
-au VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
-    \ call mkdir($HOME . "/.vim") |
-    \ endif |
-    \ execute "mksession! " . $HOME . "/.vim/Session.vim"
-
-au VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
-    \ execute "source " . $HOME . "/.vim/Session.vim"
-
-" EasyMotion
-nmap <Space> <Plug>(easymotion-s)
+"au VimLeave * nested if (!isdirectory($HOME . "/.vim")) |
+"    \ call mkdir($HOME . "/.vim") |
+"    \ endif |
+"    \ execute "mksession! " . $HOME . "/.vim/Session.vim"
+"
+"au VimEnter * nested if argc() == 0 && filereadable($HOME . "/.vim/Session.vim") |
+"    \ execute "source " . $HOME . "/.vim/Session.vim"
