@@ -54,44 +54,24 @@ Plugin 'Lokaltog/vim-easymotion'
 
 Plugin 'flazz/vim-colorschemes'
 
-Plugin 'Shougo/neocomplete.vim'
-
 Plugin 'scrooloose/nerdcommenter'
 
 Plugin 'tpope/vim-fugitive'
 call vundle#end()
 filetype on
 
-colorscheme Tomorrow-Night-Bright
-"colorscheme hemisu
+" try catch colorscheme setting
+" http://stackoverflow.com/a/5702498
+try
+    colorscheme Monokai
+    "colorscheme hemisu
+catch /^Vim\%((\a\+)\)\=:E185/
+    colorscheme desert
+endtry
 
 let g:bufferline_echo = 0
 let g:airline#extensions#bufferline#enabled = 1
 let g:airline#extensions#tabline#enbled = 1
-
-"neocomplete settings
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_smart_case = 0
-let g:neocomplete#enable_auto_close_preview = 0
-let g:neocomplete#max_list = 20
-
-inoremap <expr><C-g> neocomplete#undo_completion()
-inoremap <expr><C-l> neocomplete#complete_common_string()
-
-"<CR>: close popup and save indent.
-inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
-function! s:my_cr_function()
-    return pumvisible() ? neocomplete#close_popup() : "\<CR>"
-endfunction
-
-" <TAB>: completion
-inoremap <expr><TAB> pumvisible() ? "\<C-n>": "\<TAB>"
-inoremap <expr><S-TAB> pumvisible() ? "\<C-p>": "\<TAB>"
-" <C-h>, <BS>: close popup and delete backward char
-inoremap <expr><C-h> neocomplete#smart_close_popup()."\<C-h>"
-inoremap <expr><BS> neocomplete#smart_close_popup()."\<C-h>"
-
-autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
 
 " NERDTree settings
 map <F3> :NERDTreeToggle<CR>
